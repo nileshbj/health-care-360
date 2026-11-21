@@ -1,17 +1,12 @@
-# Health & Care 360° — Website samples
+# Health & Care 360° website
 
-## Structure
-- `index.html` — Sample 1 (default homepage)
-- `sample2.html` — Sample 2 (alternative visual design)
-- `assets/` — all local image assets used by both pages
+Static multilingual website (English, Marathi, Hindi).
 
-## Preview locally
-Open `index.html` in a browser. Use the Sample 2 link in the header or footer to switch designs.
+- `index.html` — Sample 1: “Good decisions begin with good guidance.”
+- `sample2.html` — Sample 2: “Protection, without the confusion.”
+- `assets/` — local images used by both pages.
 
-## Netlify deployment
-Connect this GitHub repository to your existing Netlify project.
-- Build command: leave blank
-- Publish directory: `.` (repository root)
-- Production branch: `main`
+## Deploy with Netlify
+Connect this repository to Netlify. Use the `main` branch, leave Base directory and Build command blank, and set Publish directory to `.`. No build step is required.
 
-No framework, build step, CSS CDN, or JavaScript CDN is required.
+Keep the `assets` folder at the repository root so relative image paths continue to work.
