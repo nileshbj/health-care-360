@@ -1,14 +1,17 @@
-# Health & Care 360° — Arya typography update
+# Health & Care 360° — refreshed visual samples
 
-## Files
-- `index.html` — Sample 1 (default homepage)
-- `sample2.html` — Sample 2
-- `sample1.css`, `sample2.css` — separate visual styles
-- `typography.css` — shared Arya font system
-- `assets/` — website images
+## Pages
+- `index.html` — Sample 1: warm grey / soft sage, muted and low-glare.
+- `sample2.html` — Sample 2: deeper evergreen / slate palette with warm muted accents.
 
-## Typography
-Both samples now use **Arya** from Google Fonts for English, Marathi and Hindi. Arya supports Latin and Devanagari and is loaded in Regular (400) and Bold (700). The Google Fonts stylesheet is loaded in each HTML page; the shared CSS applies the font consistently.
+## Shared typography
+Both pages use Arya from Google Fonts (CDN), with local system fallbacks.
 
-## GitHub / Netlify update
-Upload and replace these files at the repository root: `index.html`, `sample2.html`, `sample1.css`, `sample2.css`, `typography.css`, and `README.md`. Keep the existing `assets/` folder. Commit the changes; Netlify should deploy automatically.
+## Assets
+Keep the `assets/` folder at the repository root. The HTML files reference images using relative paths such as `assets/family-hero.png`.
+
+## Netlify / GitHub update
+Upload and commit the updated `index.html`, `sample2.html`, `sample1.css`, `sample2.css`, `typography.css`, and `README.md` to the root of the connected GitHub repository. Keep the existing `assets/` folder unchanged. Netlify should automatically deploy from the `main` branch.
+
+## Motion
+The pages use a short hero entrance and subtle reveal-on-scroll transitions. They respect the visitor's `prefers-reduced-motion` setting.

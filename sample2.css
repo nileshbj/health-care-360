@@ -149,3 +149,46 @@ footer{background:#101b2b}
 .sample-variant-link:hover{transform:translateY(-2px);background:rgba(255,255,255,.75)}
 .sample-variant-footer{display:inline-flex;margin-top:12px;color:#fff;border:1px solid rgba(255,255,255,.55);border-radius:999px;padding:10px 16px;font-size:12px;font-weight:750;text-decoration:none}
 @media(max-width:600px){.sample-variant-link{padding:8px 10px;margin-right:4px;font-size:10px}.navright{gap:5px}}
+
+/* SAMPLE 2 — deeper evergreen / slate palette with warm muted accents */
+:root{--navy:#e6ece6;--navy2:#d0ddd5;--teal:#a6b99c;--mint:#2a4038;--ink:#e2e9e2;--muted:#b0bdb4;--paper:#202f29;--line:#3b5046;--gold:#c5a879;--shadow:0 16px 40px rgba(0,0,0,.22)}
+html{background:#182720;scroll-padding-top:90px}
+body{background:#182720;color:#e2e9e2}
+header{background:rgba(26,42,34,.97);border-color:#34483d;backdrop-filter:blur(12px)}
+.brand,.section-head h2,.knowledge-copy h2,.service h3,.article b,.step h3,.path-top h3{color:#edf2eb}
+.brand span small{color:#aebbb1}.logo{background:#b5c5ae;color:#1b3026}
+.navlinks{color:#c1cdc3}.navlinks a:hover,.textlink{color:#c4d1ae}
+.langselect{background:#253a30;border-color:#4a6053;color:#e5ece4}
+.topbar{background:#111e18;color:#b9c8bd}
+.hero{background:linear-gradient(112deg,#172b23 0%,#223a30 55%,#314b3d 100%);color:#f0f3ed}
+.hero:after{border-color:rgba(224,235,221,.12);box-shadow:0 0 0 55px rgba(224,235,221,.035),0 0 0 110px rgba(224,235,221,.02)}
+.eyebrow,.kicker{color:#c3cda9}.eyebrow:before{background:#c5a879}
+.hero h1{color:#f4f4ed}.hero p{color:#c4d0c6}.hero .outline{background:transparent;border-color:#8fa596;color:#eef2eb}
+.primary,.darkbtn{background:#9caf91;color:#17271f;box-shadow:0 8px 18px rgba(0,0,0,.15)}
+.outline{border-color:#708a79;color:#e5ece4}
+.truststrip{background:#1d3027;border-color:#354b3e}.trustitem{color:#c1cdc3}.trustitem strong{color:#c4d1ae}
+section{background:#1b2c24}.soft{background:#22362c}
+.path-card,.service,.article,.step{background:#293e33;border-color:#40584a;color:#e2e9e2}
+.path-top.family{background:linear-gradient(135deg,#314b3d,#3a5545)}.path-top.corporate{background:linear-gradient(135deg,#2d4140,#354c4b)}
+.path-top h3,.service h3,.article b,.step h3{color:#f0f3ed}.path-top p,.service p,.section-head p,.knowledge-copy p,.step p{color:#c0ccc2}
+.path-bottom{background:#293e33}.pill{background:#354d40;color:#d2ddcf}
+.service-icon,.article-icon{background:#385446;color:#d1dfc9}
+.cta{background:linear-gradient(115deg,#111f19,#263d31);border:1px solid #405849}
+footer{background:#111e18}.footerbrand{color:#f0f3ed}
+#languageScreen{background:radial-gradient(circle at 78% 12%,#304a3b 0,#20372b 48%,#17271f 100%);color:#edf2eb}
+.language-mark{background:#9caf91;color:#17271f}.language-box h1{color:#f0f3ed}.language-native-line{color:#c4d1ae}.language-box>p{color:#bdcbbf}
+.language-card{background:#293e33;color:#f0f3ed;border-color:#425b4c;box-shadow:0 14px 30px rgba(0,0,0,.2)}
+.language-card .english{color:#c0ccc2}.language-card .short{background:#3a5545;color:#d7e1d2}
+.float-card{background:#edf0e9;color:#20382b}.float-card small{color:#63746a}
+.sample-variant-link{border-color:#718c79;color:#e1e9df}.sample-variant-link:hover{background:#31483a}
+.sample-variant-footer{border-color:#718c79;color:#e1e9df}
+.btn,.path-card,.service,.article,.step,.language-card,.float-card{transition:transform .32s ease,box-shadow .32s ease,background-color .32s ease,border-color .32s ease}
+.path-card:hover,.service:hover,.language-card:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(0,0,0,.24)}
+@media(max-width:600px){body{background:#182720}.hero{background:linear-gradient(145deg,#172b23,#2c4638)}}
+
+/* Restrained motion: gentle entrance, no looping or parallax */
+@keyframes hc360-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner>*{animation:hc360-rise .75s cubic-bezier(.2,.7,.2,1) both}.hero-inner>*:nth-child(2){animation-delay:.12s}
+.reveal-ready .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal-ready .reveal.is-visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal-ready .reveal{opacity:1;transform:none}}

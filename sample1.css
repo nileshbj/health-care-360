@@ -147,3 +147,44 @@ footer{background:#073f31}
 .sample-variant-link:hover{transform:translateY(-2px);background:rgba(255,255,255,.75)}
 .sample-variant-footer{display:inline-flex;margin-top:12px;color:#fff;border:1px solid rgba(255,255,255,.55);border-radius:999px;padding:10px 16px;font-size:12px;font-weight:750;text-decoration:none}
 @media(max-width:600px){.sample-variant-link{padding:8px 10px;margin-right:4px;font-size:10px}.navright{gap:5px}}
+
+/* SAMPLE 1 — warm grey, soft sage, low-glare editorial finish */
+:root{--navy:#203a35;--navy2:#304b44;--teal:#638b7b;--mint:#e2e8e2;--ink:#303b37;--muted:#68736d;--paper:#e9ebe6;--line:#d4d9d2;--gold:#b99a65;--shadow:0 14px 38px rgba(35,52,45,.08)}
+html{background:#e8eae5;scroll-padding-top:90px}
+body{background:#e8eae5;color:var(--ink)}
+header{background:rgba(238,240,235,.96);backdrop-filter:blur(12px);border-color:#d6dbd4}
+.brand,.section-head h2,.knowledge-copy h2,.service h3,.article b,.step h3,.path-top h3{color:#203a35}
+.logo{background:#29483e}
+.navlinks{color:#53625b}.navlinks a:hover,.textlink{color:#557f6e}
+.langselect{background:#e6e9e3;border-color:#d0d7ce;color:#263d35}
+.hero{background:linear-gradient(118deg,#dfe4de 0%,#e8ebe5 57%,#d8e2dc 100%);color:#203a35}
+.hero:after{border-color:rgba(52,92,73,.12);box-shadow:0 0 0 55px rgba(52,92,73,.035),0 0 0 110px rgba(52,92,73,.025)}
+.eyebrow,.kicker{color:#638b76}.eyebrow:before{background:#b99a65}
+.hero p{color:#58675f}.hero .outline{background:transparent;border-color:#84988c;color:#29483e}
+.primary{background:#557d6c;box-shadow:0 8px 18px rgba(55,92,73,.15)}
+.darkbtn{background:#29483e}
+.truststrip{background:#e2e6df;border-color:#d2d8d0}.trustitem{color:#5b6961}.trustitem strong{color:#648b77}
+section{background:#e8eae5}.soft{background:#dfe3dc}
+.path-card,.service,.article,.step{background:#f0f1ec;border-color:#d6dbd4}
+.path-top.family{background:linear-gradient(135deg,#dce7df,#e9eee8)}.path-top.corporate{background:linear-gradient(135deg,#dce3e0,#e9ece8)}
+.path-top p,.service p,.section-head p,.knowledge-copy p,.step p{color:#626e67}
+.path-bottom{background:#f0f1ec}.pill{background:#e2e7e0;color:#50645a}
+.service-icon,.article-icon{background:#e0e8e1;color:#557d6c}
+.cta{background:linear-gradient(115deg,#29483e,#38584b)}
+footer{background:#203a35}
+#languageScreen{background:radial-gradient(circle at 78% 10%,#e5e9e2 0,#dfe4dd 54%,#d5ddd5 100%);color:#203a35}
+.language-mark{background:#557d6c}.language-box>p{color:#66756b}.language-box h1{color:#203a35}.language-native-line{color:#648775}
+.language-card{background:#f0f1ec;color:#203a35;border-color:#d5dcd4;box-shadow:0 12px 28px rgba(38,55,45,.07)}
+.language-card .english{color:#65736b}.language-card .short{background:#e1e8e0;color:#557d6c}
+.float-card{background:#f1f2ed;color:#29483e}.float-card small{color:#68776e}
+.sample-variant-link{border-color:#9eafa2;color:#29483e}.sample-variant-footer{border-color:rgba(255,255,255,.55)}
+.btn,.path-card,.service,.article,.step,.language-card,.float-card{transition:transform .32s ease,box-shadow .32s ease,background-color .32s ease,border-color .32s ease}
+.path-card:hover,.service:hover,.language-card:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(35,52,45,.11)}
+@media(max-width:600px){body{background:#e8eae5}.hero{background:linear-gradient(145deg,#dfe4de,#e8ebe5)}}
+
+/* Restrained motion: gentle entrance, no looping or parallax */
+@keyframes hc360-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner>*{animation:hc360-rise .75s cubic-bezier(.2,.7,.2,1) both}.hero-inner>*:nth-child(2){animation-delay:.12s}
+.reveal-ready .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal-ready .reveal.is-visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal-ready .reveal{opacity:1;transform:none}}

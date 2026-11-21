@@ -84,6 +84,17 @@ let currentLang='en';
 function enterSite(lang){currentLang=lang;document.getElementById('languageScreen').style.display='none';document.getElementById('site').style.display='block';document.querySelector('.langselect').value=lang;applyLang(lang);window.scrollTo(0,0)}
 function changeLanguage(lang){currentLang=lang;applyLang(lang)}
 function applyLang(lang){const t=translations[lang]||translations.en;document.documentElement.lang=lang;document.querySelectorAll('[data-i]').forEach(el=>{const key=el.getAttribute('data-i');if(t[key])el.textContent=t[key]});}
+
+// Subtle scroll reveals; disabled automatically for reduced-motion preferences.
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.documentElement.classList.add('reveal-ready');
+  const revealTargets = document.querySelectorAll('main > section, .path-card, .service, .article, .step, .cta');
+  revealTargets.forEach((el, i) => { el.classList.add('reveal'); el.style.transitionDelay = (i % 4) * 55 + 'ms'; });
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+  revealTargets.forEach(el => revealObserver.observe(el));
+}
 </script>
 </body>
 </html>
