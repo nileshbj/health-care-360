@@ -1,0 +1,23 @@
+/* Health & Care 360° typography system — Arya (Latin + Devanagari) */
+:root {
+  --font-brand: "Arya", "Nirmala UI", "Mangal", Arial, sans-serif;
+  --font-latin: var(--font-brand);
+  --font-devanagari: var(--font-brand);
+}
+html { -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; }
+body, button, input, select, textarea { font-family: var(--font-brand) !important; }
+:lang(en), :lang(mr), :lang(hi) { font-family: var(--font-brand); }
+.language-box h1 { font-family: var(--font-brand); font-size: clamp(32px, 4.2vw, 54px); line-height: 1.16; font-weight: 700; letter-spacing: 0; margin: 26px auto 10px; }
+.language-native-line { color: #43866f; font-family: var(--font-brand); font-size: clamp(20px, 2.5vw, 31px); line-height: 1.55; font-weight: 400; margin: 0 auto 16px; }
+.language-native-line span { padding: 0 .25em; color: #8bb8a6; }
+.language-box > p { font-family: var(--font-brand); font-size: clamp(15px, 1.5vw, 19px); line-height: 1.7; color: #557469; max-width: 760px; margin: 0 auto 34px; }
+.language-card .native { font-family: var(--font-brand); font-weight: 700 !important; line-height: 1.5; }
+.language-card .english { font-family: var(--font-brand); font-weight: 400; }
+.hero h1 { font-family: var(--font-brand); font-weight: 700; line-height: 1.16; letter-spacing: 0; }
+html[lang="mr"] .hero h1, html[lang="hi"] .hero h1 { font-family: var(--font-brand); font-weight: 700; letter-spacing: 0; line-height: 1.35; }
+@media (max-width: 600px) {
+  .language-box h1 { font-size: clamp(30px, 8vw, 40px); letter-spacing: 0; }
+  .language-native-line { font-size: clamp(19px, 5.2vw, 24px); line-height: 1.6; }
+  .language-card .native { font-size: 24px; }
+  .hero h1 { letter-spacing: 0; }
+}
