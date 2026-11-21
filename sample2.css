@@ -192,3 +192,42 @@ footer{background:#111e18}.footerbrand{color:#f0f3ed}
 .reveal-ready .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .reveal-ready .reveal.is-visible{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal-ready .reveal{opacity:1;transform:none}}
+
+
+/* Motion refresh: visible, restrained animations */
+@keyframes hc360-fade-up {
+  0% { opacity: 0; transform: translateY(26px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes hc360-soft-zoom {
+  0% { opacity: 0; transform: scale(.965); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes hc360-drift {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+/* Language chooser animates on initial load */
+.language-box { animation: hc360-fade-up .8s cubic-bezier(.2,.7,.2,1) both; }
+.language-card { animation: hc360-fade-up .65s cubic-bezier(.2,.7,.2,1) both; }
+.language-card:nth-child(2) { animation-delay: .10s; }
+.language-card:nth-child(3) { animation-delay: .20s; }
+/* Start the homepage motion only after the visitor chooses a language. */
+.site-entered .hero-inner > div:first-child { animation: hc360-fade-up .85s cubic-bezier(.2,.7,.2,1) both; }
+.site-entered .visual { animation: hc360-soft-zoom 1s .12s cubic-bezier(.2,.7,.2,1) both; }
+.site-entered .float-card.one { animation: hc360-fade-up .7s .55s both; }
+.site-entered .float-card.two { animation: hc360-fade-up .7s .72s both; }
+.site-entered .hero:after { animation: hc360-soft-zoom 1.3s .2s both; }
+/* Scroll-in motion is intentionally clearer than the previous version. */
+.reveal-ready .reveal { opacity: 0; transform: translateY(28px); transition: opacity .85s ease, transform .85s cubic-bezier(.2,.7,.2,1); }
+.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
+/* Hover motion stays subtle and only applies to pointer devices. */
+@media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .service:hover, .path-card:hover, .article:hover { transform: translateY(-6px); }
+  .visual-photo { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .visual:hover .visual-photo { transform: scale(1.025); }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; }
+  .reveal-ready .reveal { opacity:1!important; transform:none!important; }
+}

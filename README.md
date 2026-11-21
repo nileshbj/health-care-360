@@ -1,17 +1,7 @@
-# Health & Care 360° — refreshed visual samples
+# Health & Care 360° — motion update
 
-## Pages
-- `index.html` — Sample 1: warm grey / soft sage, muted and low-glare.
-- `sample2.html` — Sample 2: deeper evergreen / slate palette with warm muted accents.
+Files at repository root: `index.html` (Sample 1), `sample2.html` (Sample 2), `sample1.css`, `sample2.css`, `typography.css`, and `assets/`.
 
-## Shared typography
-Both pages use Arya from Google Fonts (CDN), with local system fallbacks.
+This update makes the entrance and scroll animations visible after the visitor selects a language. It includes staggered language cards, animated homepage hero content and image, scroll reveals, and restrained hover motion. It respects `prefers-reduced-motion`.
 
-## Assets
-Keep the `assets/` folder at the repository root. The HTML files reference images using relative paths such as `assets/family-hero.png`.
-
-## Netlify / GitHub update
-Upload and commit the updated `index.html`, `sample2.html`, `sample1.css`, `sample2.css`, `typography.css`, and `README.md` to the root of the connected GitHub repository. Keep the existing `assets/` folder unchanged. Netlify should automatically deploy from the `main` branch.
-
-## Motion
-The pages use a short hero entrance and subtle reveal-on-scroll transitions. They respect the visitor's `prefers-reduced-motion` setting.
+To deploy, replace the existing HTML and CSS files in the GitHub repository and keep/merge the existing `assets` folder. Netlify should deploy automatically after the commit.
