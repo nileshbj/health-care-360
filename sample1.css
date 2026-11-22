@@ -227,3 +227,242 @@ footer{background:#203a35}
   *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; }
   .reveal-ready .reveal { opacity:1!important; transform:none!important; }
 }
+
+
+
+/* =========================================================
+   MOBILE LAYOUT REPAIR — added after all previous styles
+   Fixes narrow-screen header wrapping and hero overlap.
+   ========================================================= */
+@media (max-width: 760px) {
+  .hero-inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    align-items: start !important;
+    gap: 26px !important;
+    padding: 42px 0 38px !important;
+  }
+  .hero-inner > div:first-child {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  .hero h1 {
+    max-width: 100% !important;
+    width: 100% !important;
+    font-size: clamp(32px, 8.1vw, 42px) !important;
+    line-height: 1.16 !important;
+    letter-spacing: -0.45px !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    margin: 17px 0 16px !important;
+  }
+  .hero p {
+    max-width: 100% !important;
+    font-size: 16px !important;
+    line-height: 1.65 !important;
+  }
+  .hero .visual {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 460px !important;
+    min-height: 300px !important;
+    height: 300px !important;
+    margin: 4px auto 0 !important;
+    overflow: visible !important;
+  }
+  .hero .visual-photo {
+    position: absolute !important;
+    display: block !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    object-fit: cover !important;
+    object-position: center 42% !important;
+  }
+  .hero .visual:after {
+    pointer-events: none;
+  }
+  .hero .float-card {
+    position: absolute !important;
+    z-index: 2 !important;
+    width: auto !important;
+    max-width: 72% !important;
+    min-width: 0 !important;
+    padding: 11px 12px !important;
+    font-size: 12px !important;
+  }
+  .hero .float-card.one {
+    top: 12px !important;
+    right: 8px !important;
+    left: auto !important;
+  }
+  .hero .float-card.two {
+    bottom: 12px !important;
+    left: 8px !important;
+    right: auto !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrap {
+    width: calc(100% - 32px) !important;
+  }
+  .topbar {
+    padding: 8px 0 !important;
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+  }
+  .topbar .wrap {
+    min-height: 0 !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 50 !important;
+  }
+  .nav {
+    min-height: 68px !important;
+    height: auto !important;
+    padding: 9px 0 !important;
+    gap: 7px !important;
+    align-items: center !important;
+  }
+  .brand {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    gap: 8px !important;
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+  }
+  .brand > span:last-child {
+    display: block !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+  }
+  .brand .logo {
+    flex: 0 0 36px !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 20px !important;
+    border-radius: 11px !important;
+  }
+  .brand span small {
+    display: none !important;
+  }
+  .navright {
+    flex: 0 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    min-width: 0 !important;
+  }
+  .sample-variant-link {
+    display: inline-flex !important;
+    padding: 7px 8px !important;
+    margin: 0 !important;
+    font-size: 10px !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+  }
+  .langselect {
+    max-width: 83px !important;
+    width: 83px !important;
+    min-width: 0 !important;
+    padding: 8px 5px !important;
+    font-size: 11px !important;
+  }
+  .mobilemenu {
+    display: block !important;
+    flex: 0 0 30px !important;
+    width: 30px !important;
+    padding: 0 !important;
+    font-size: 25px !important;
+    line-height: 1 !important;
+  }
+  .hero-inner {
+    padding: 34px 0 32px !important;
+    gap: 22px !important;
+  }
+  .hero .eyebrow {
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 1.5px !important;
+    max-width: 100% !important;
+  }
+  .hero h1 {
+    font-size: clamp(31px, 8.3vw, 38px) !important;
+    line-height: 1.15 !important;
+    margin: 17px 0 14px !important;
+  }
+  .hero p {
+    font-size: 15px !important;
+    line-height: 1.62 !important;
+    margin-bottom: 20px !important;
+  }
+  .hero-actions {
+    gap: 9px !important;
+  }
+  .hero-actions .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 13px 15px !important;
+  }
+  .hero-note {
+    margin-top: 18px !important;
+    gap: 10px 14px !important;
+    line-height: 1.5 !important;
+  }
+  .hero .visual {
+    height: 270px !important;
+    min-height: 270px !important;
+    max-width: 100% !important;
+    margin-top: 0 !important;
+  }
+  .hero .float-card b {
+    font-size: 11px !important;
+  }
+  .hero .float-card small {
+    font-size: 10px !important;
+  }
+  .whatsapp {
+    right: 12px !important;
+    bottom: 14px !important;
+    padding: 11px 13px !important;
+    font-size: 11px !important;
+    z-index: 60 !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .sample-variant-link {
+    font-size: 9px !important;
+    padding: 7px 6px !important;
+  }
+  .langselect {
+    width: 72px !important;
+    max-width: 72px !important;
+    font-size: 10px !important;
+  }
+  .brand {
+    font-size: 11px !important;
+  }
+  .brand .logo {
+    flex-basis: 33px !important;
+    width: 33px !important;
+    height: 33px !important;
+  }
+  .hero h1 {
+    font-size: 31px !important;
+  }
+}
