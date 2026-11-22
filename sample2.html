@@ -69,10 +69,30 @@
       <article class="step"><div class="stepnum">STEP 02</div><h3 data-i="step2">Discuss available options</h3><p data-i="stepd2">Have a conversation and understand relevant features, requirements and next steps.</p></article>
       <article class="step"><div class="stepnum">STEP 03</div><h3 data-i="step3">Review before you decide</h3><p data-i="stepd3">Read the official quote and policy wording, ask questions and make an informed decision.</p></article>
     </div></div></section>
-    <section id="contact"><div class="wrap"><div class="cta"><div><h2 data-i="ctaTitle">Have a question? Let's talk.</h2><p data-i="ctaDesc">Tell us what you are looking for. We will help you take the next step.</p></div><a class="btn primary" href="https://wa.me/?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener" data-i="ctaBtn">Start a WhatsApp enquiry ↗</a></div></div></section>
+    <section id="contact"><div class="wrap"><div class="cta"><div><h2 data-i="ctaTitle">Have a question? Let's talk.</h2><p data-i="ctaDesc">Tell us what you are looking for. We will help you take the next step.</p></div><a class="btn primary" href="https://wa.me/919665926095?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener" data-i="ctaBtn">Start a WhatsApp enquiry ↗</a></div></div></section>
   </main>
   <footer><div class="wrap"><div class="footergrid"><div><div class="footerbrand">HEALTH & CARE 360°<small data-i="footerTag">Your Health. Your Protection. Our Commitment.</small></div><p style="font-size:12px;color:#b4c6d0;line-height:1.7;max-width:340px" data-i="footerDesc">Independent guidance for insurance and healthcare enquiries. Clear information, thoughtful conversations and support through the process.</p></div><div class="footercol"><b data-i="footerServices">Services</b><a href="#services" data-i="s1">Health Insurance</a><a href="#services" data-i="s2">Life & Term Insurance</a><a href="#services" data-i="s4">Corporate Healthcare</a><a href="#services" data-i="s5">OHC & Health Camps</a></div><div class="footercol"><b data-i="footerExplore">Explore</b><a href="#knowledge" data-i="navKnowledge">Knowledge Centre</a><a href="#about" data-i="navAbout">How it works</a><a href="#contact" data-i="navContact">Contact</a><span>Nashik, Maharashtra</span></div></div><div class="disclaimer" data-i="disclaimer">This is a concept website. Insurance products, quotations, eligibility, coverage and claims are subject to insurer terms and applicable regulations. Any insurance solicitation or distribution will be undertaken only through appropriately authorised persons/entities. Healthcare services are subject to availability and qualified provider arrangements. This website does not provide medical advice.</div></div><a class="sample-variant-footer" href="./index.html">Back to Sample 1 →</a></footer>
-  <a class="whatsapp" href="https://wa.me/?text=Hello%2C%20I%20have%20an%20enquiry." target="_blank" rel="noopener"><span style="font-size:18px">◉</span><span data-i="whatsapp">WhatsApp us</span></a>
+
+  <div class="wa-widget" id="waWidget">
+    <div class="wa-panel" id="waPanel" aria-hidden="true">
+      <div class="wa-panel-head">
+        <div class="wa-avatar" aria-hidden="true">♥</div>
+        <div class="wa-head-copy">
+          <strong>Health &amp; Care 360°</strong>
+          <span data-wa="prompt">How can we help you today?</span>
+        </div>
+        <button class="wa-close" type="button" aria-label="Close WhatsApp menu" onclick="toggleWhatsAppMenu(false)">×</button>
+      </div>
+      <div class="wa-panel-body">
+        <p class="wa-menu-title" data-wa="choose">Choose a service</p>
+        <div class="wa-options" id="waOptions"></div>
+        <p class="wa-panel-foot" data-wa="foot">WhatsApp will open with your message ready to send.</p>
+      </div>
+    </div>
+    <button class="whatsapp" id="waToggle" type="button" aria-expanded="false" aria-controls="waPanel" onclick="toggleWhatsAppMenu()">
+      <span class="wa-icon" aria-hidden="true">◉</span><span data-i="whatsapp">WhatsApp us</span><span class="wa-chevron" aria-hidden="true">⌃</span>
+    </button>
+  </div>
 </div>
 <script>
 const translations={
@@ -95,7 +115,7 @@ function enterSite(lang){
   window.scrollTo(0,0);
 }
 function changeLanguage(lang){currentLang=lang;applyLang(lang)}
-function applyLang(lang){const t=translations[lang]||translations.en;document.documentElement.lang=lang;document.querySelectorAll('[data-i]').forEach(el=>{const key=el.getAttribute('data-i');if(t[key])el.textContent=t[key]});}
+function applyLang(lang){const t=translations[lang]||translations.en;document.documentElement.lang=lang;document.querySelectorAll('[data-i]').forEach(el=>{const key=el.getAttribute('data-i');if(t[key])el.textContent=t[key]});if(typeof renderWhatsAppMenu==='function')renderWhatsAppMenu();}
 
 // Observe sections after the homepage is made visible, so reveals work after language selection.
 function setupScrollReveals(){
@@ -108,6 +128,84 @@ function setupScrollReveals(){
   },{threshold:0.10,rootMargin:'0px 0px -30px 0px'});
   revealTargets.forEach(el=>observer.observe(el));
 }
+
+
+const waCatalog = {
+  en: {
+    prompt:"How can we help you today?", choose:"Choose a service",
+    foot:"WhatsApp will open with your message ready to send.",
+    items:[
+      ["health","♥","Health insurance","Hello, I would like to know more about health insurance."],
+      ["life","▣","Term / life insurance","Hello, I would like information about term and life insurance."],
+      ["motor","◇","Motor insurance","Hello, I would like information about motor insurance."],
+      ["corporate","▥","Corporate healthcare","Hello, I would like to discuss corporate healthcare services."],
+      ["renewal","↻","Policy renewal","Hello, I need assistance with my policy renewal."],
+      ["other","✉","Other enquiry","Hello, I have an enquiry about your services."]
+    ]
+  },
+  mr: {
+    prompt:"आम्ही आपली कशी मदत करू शकतो?", choose:"सेवा निवडा",
+    foot:"तुमचा संदेश तयार असेल. पाठवण्यासाठी WhatsApp उघडेल.",
+    items:[
+      ["health","♥","आरोग्य विमा","नमस्कार, मला आरोग्य विम्याबद्दल अधिक माहिती हवी आहे."],
+      ["life","▣","टर्म / जीवन विमा","नमस्कार, मला टर्म आणि जीवन विम्याबद्दल माहिती हवी आहे."],
+      ["motor","◇","मोटार विमा","नमस्कार, मला मोटार विम्याबद्दल माहिती हवी आहे."],
+      ["corporate","▥","कॉर्पोरेट आरोग्य सेवा","नमस्कार, मला कॉर्पोरेट आरोग्य सेवांबद्दल चर्चा करायची आहे."],
+      ["renewal","↻","पॉलिसी नूतनीकरण","नमस्कार, मला माझ्या पॉलिसीच्या नूतनीकरणासाठी मदत हवी आहे."],
+      ["other","✉","इतर चौकशी","नमस्कार, मला आपल्या सेवांबद्दल चौकशी करायची आहे."]
+    ]
+  },
+  hi: {
+    prompt:"हम आपकी कैसे मदद कर सकते हैं?", choose:"एक सेवा चुनें",
+    foot:"आपका संदेश तैयार रहेगा। भेजने के लिए WhatsApp खुलेगा।",
+    items:[
+      ["health","♥","स्वास्थ्य बीमा","नमस्कार, मुझे स्वास्थ्य बीमा के बारे में अधिक जानकारी चाहिए।"],
+      ["life","▣","टर्म / जीवन बीमा","नमस्कार, मुझे टर्म और जीवन बीमा के बारे में जानकारी चाहिए।"],
+      ["motor","◇","मोटर बीमा","नमस्कार, मुझे मोटर बीमा के बारे में जानकारी चाहिए।"],
+      ["corporate","▥","कॉर्पोरेट स्वास्थ्य सेवाएँ","नमस्कार, मैं कॉर्पोरेट स्वास्थ्य सेवाओं पर चर्चा करना चाहता/चाहती हूँ।"],
+      ["renewal","↻","पॉलिसी नवीनीकरण","नमस्कार, मुझे अपनी पॉलिसी के नवीनीकरण में सहायता चाहिए।"],
+      ["other","✉","अन्य पूछताछ","नमस्कार, मुझे आपकी सेवाओं के बारे में पूछताछ करनी है।"]
+    ]
+  }
+};
+function renderWhatsAppMenu(){
+  const lang = (typeof currentLang !== "undefined" && waCatalog[currentLang]) ? currentLang : "en";
+  const data = waCatalog[lang];
+  document.querySelectorAll("[data-wa]").forEach(el => {
+    const key = el.getAttribute("data-wa");
+    if (data[key]) el.textContent = data[key];
+  });
+  const options = document.getElementById("waOptions");
+  if (!options) return;
+  options.innerHTML = data.items.map(item =>
+    `<button class="wa-option" type="button" onclick="sendWhatsAppEnquiry('${item[0]}')"><span class="wa-option-icon" aria-hidden="true">${item[1]}</span><span>${item[2]}</span></button>`
+  ).join("");
+}
+function toggleWhatsAppMenu(force){
+  const widget = document.getElementById("waWidget");
+  const panel = document.getElementById("waPanel");
+  const toggle = document.getElementById("waToggle");
+  if (!widget || !panel || !toggle) return;
+  const open = (typeof force === "boolean") ? force : !widget.classList.contains("is-open");
+  widget.classList.toggle("is-open", open);
+  panel.setAttribute("aria-hidden", String(!open));
+  toggle.setAttribute("aria-expanded", String(open));
+  if (open) renderWhatsAppMenu();
+}
+function sendWhatsAppEnquiry(key){
+  const lang = (typeof currentLang !== "undefined" && waCatalog[currentLang]) ? currentLang : "en";
+  const item = waCatalog[lang].items.find(x => x[0] === key);
+  if (!item) return;
+  const url = "https://wa.me/919665926095?text=" + encodeURIComponent(item[3]);
+  window.open(url, "_blank", "noopener,noreferrer");
+  toggleWhatsAppMenu(false);
+}
+document.addEventListener("keydown", function(e){ if(e.key === "Escape") toggleWhatsAppMenu(false); });
+document.addEventListener("click", function(e){
+  const widget = document.getElementById("waWidget");
+  if(widget && !widget.contains(e.target)) toggleWhatsAppMenu(false);
+});
+
 </script>
 </body>
 </html>

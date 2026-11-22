@@ -17,3 +17,11 @@ This update fixes the small-screen header and hero layout:
 - Floating information cards stay within the photograph.
 
 Replace `index.html`, `sample2.html`, `sample1.css`, and `sample2.css` in the GitHub repository. Keep `typography.css` and the existing `assets` folder.
+
+
+## WhatsApp enquiry menu
+- Both samples use the confirmed WhatsApp contact +91 96659 26095.
+- The floating WhatsApp button opens a small service menu.
+- Service choices generate greeting-first messages in the visitor's selected language (English, Marathi or Hindi).
+- No WhatsApp API, backend or paid chatbot is required. A visitor chooses a service, WhatsApp opens with a pre-filled message, and the visitor presses Send.
+- Replace `index.html`, `sample2.html`, `sample1.css`, and `sample2.css` in GitHub. Keep `typography.css` and the existing `assets` folder.
