@@ -1,36 +1,41 @@
-/* Shared responsive navigation: close on selection, outside tap, Escape and browser Back */
 document.addEventListener('DOMContentLoaded',()=>{
- const nav=document.getElementById('hc360-main-nav');
- const toggle=document.querySelector('.hc360-menu-toggle');
- const dropdown=document.querySelector('.hc360-nav .service-dropdown');
- const trigger=dropdown?.querySelector('.service-trigger');
- let menuHistoryState=false;
- const closeMenu=()=>{
-   if(!nav||!toggle)return;
-   nav.classList.remove('is-open');
-   toggle.setAttribute('aria-expanded','false');
-   toggle.setAttribute('aria-label','Open navigation');
-   toggle.textContent='☰';
-   if(menuHistoryState){menuHistoryState=false; if(history.state?.hc360Menu){history.back();}}
- };
- const closeDropdown=()=>{dropdown?.classList.remove('is-open');trigger?.setAttribute('aria-expanded','false');};
- if(nav&&toggle){
-   toggle.addEventListener('click',()=>{
-     const open=!nav.classList.contains('is-open');
-     if(open){nav.classList.add('is-open');toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','Close navigation');toggle.textContent='×';
-       try{history.pushState({...(history.state||{}),hc360Menu:true},'','#menu');menuHistoryState=true;}catch(e){}
-     }else closeMenu();
-   });
-   nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{closeMenu();closeDropdown();}));
-   document.addEventListener('pointerdown',e=>{if(nav.classList.contains('is-open')&&!nav.contains(e.target)&&!toggle.contains(e.target)){closeMenu();closeDropdown();}});
-   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();closeDropdown();}});
-   window.addEventListener('popstate',()=>{if(nav.classList.contains('is-open')){menuHistoryState=false;nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation');toggle.textContent='☰';}closeDropdown();});
- }
- if(dropdown&&trigger){
-   trigger.addEventListener('click',e=>{e.stopPropagation();const open=!dropdown.classList.contains('is-open');dropdown.classList.toggle('is-open',open);trigger.setAttribute('aria-expanded',String(open));});
-   dropdown.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeDropdown));
-   document.addEventListener('pointerdown',e=>{if(!dropdown.contains(e.target))closeDropdown();});
- }
+ const nav=document.getElementById('hc360-main-nav'),toggle=document.querySelector('.hc360-menu-toggle');
+ const dropdown=document.querySelector('.hc360-nav .service-dropdown'),trigger=dropdown?.querySelector('.service-trigger');
+ let menuHistory=false;
+ const backdrop=document.createElement('div');backdrop.className='hc360-menu-backdrop';document.body.appendChild(backdrop);
+ const setClosed=()=>{if(!nav||!toggle)return;nav.classList.remove('is-open');backdrop.classList.remove('is-visible');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation');toggle.textContent='☰';};
+ const closeMenu=(back=true)=>{if(!nav||!toggle)return;const was=nav.classList.contains('is-open');setClosed();if(back&&menuHistory&&was){menuHistory=false;if(history.state?.hc360Menu)history.back();}};
+ const openMenu=()=>{nav?.classList.add('is-open');backdrop.classList.add('is-visible');toggle?.setAttribute('aria-expanded','true');toggle?.setAttribute('aria-label','Close navigation');toggle.textContent='×';try{history.pushState({...history.state,hc360Menu:true},'','#menu');menuHistory=true;}catch(e){}};
+ toggle?.addEventListener('click',()=>nav.classList.contains('is-open')?closeMenu():openMenu());
+ backdrop.addEventListener('click',()=>closeMenu());
+ nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{closeMenu();dropdown?.classList.remove('is-open');}));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();dropdown?.classList.remove('is-open');}});
+ window.addEventListener('popstate',()=>{if(nav?.classList.contains('is-open')){menuHistory=false;setClosed();}dropdown?.classList.remove('is-open');});
+ trigger?.addEventListener('click',e=>{e.stopPropagation();const opened=!dropdown.classList.contains('is-open');dropdown.classList.toggle('is-open',opened);trigger.setAttribute('aria-expanded',String(opened));});
+ document.addEventListener('pointerdown',e=>{if(dropdown&&!dropdown.contains(e.target))dropdown.classList.remove('is-open');});
  const lang=document.querySelector('.hc360-nav .langselect');
- if(lang){try{const saved=localStorage.getItem('hc360-language');if(saved&&['en','mr','hi'].includes(saved)){lang.value=saved;if(typeof setLang==='function')setLang(saved);else if(typeof changeLanguage==='function')changeLanguage(saved);}}catch(e){}lang.addEventListener('change',()=>{try{localStorage.setItem('hc360-language',lang.value)}catch(e){}});}
+ if(lang){try{const saved=localStorage.getItem('hc360-language');if(saved&&['en','mr','hi'].includes(saved)){lang.value=saved;if(typeof setLang==='function')setLang(saved);else if(typeof changeLanguage==='function')changeLanguage(saved);}}catch(e){}}
+ // Scroll progress indicator
+ const fill=document.getElementById('hc360-progress-fill');
+ const updateProgress=()=>{if(!fill)return;const max=document.documentElement.scrollHeight-window.innerHeight;fill.style.width=(max>0?Math.min(100,window.scrollY/max*100):0)+'%';};
+ window.addEventListener('scroll',updateProgress,{passive:true});window.addEventListener('resize',updateProgress);updateProgress();
+ // Two-message hero carousel
+ const title=document.getElementById('heroRotatorTitle'),progress=document.getElementById('heroSlideProgress'),dots=[...document.querySelectorAll('.hero-dot')];
+ if(title&&dots.length){
+  const slides=[{en:'Good decisions begin with good guidance.',mr:'चांगले निर्णय योग्य मार्गदर्शनातून सुरू होतात.',hi:'अच्छे फैसले सही मार्गदर्शन से शुरू होते हैं.'},{en:'Know your options. Choose with clarity.',mr:'तुमचे पर्याय जाणून घ्या. स्पष्टतेने निवडा.',hi:'अपने विकल्प जानें। स्पष्टता से चुनें.'}];
+  let active=0,started=Date.now(),duration=5200,timer;
+  const langNow=()=>document.querySelector('.hc360-nav .langselect')?.value||'en';
+  const show=(i)=>{active=i;title.classList.add('is-changing');setTimeout(()=>{title.textContent=slides[active][langNow()]||slides[active].en;title.classList.remove('is-changing');},180);dots.forEach((d,j)=>d.classList.toggle('is-active',j===active));started=Date.now();};
+  dots.forEach(d=>d.addEventListener('click',()=>{show(Number(d.dataset.slide));}));
+  const tick=()=>{const elapsed=Date.now()-started;if(progress)progress.style.width=Math.min(100,elapsed/duration*100)+'%';if(elapsed>=duration)show((active+1)%2);};
+  timer=setInterval(tick,80);show(0);
+  document.querySelector('.hc360-nav .langselect')?.addEventListener('change',()=>show(active));
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInterval(timer);}else{started=Date.now();timer=setInterval(tick,80);}});
+ }
+ // Make service tiles whole-card click targets while preserving their inner links
+ document.querySelectorAll('.service[data-card-href]').forEach(card=>{
+  const go=()=>{location.href=card.dataset.cardHref;};
+  card.addEventListener('click',e=>{if(!e.target.closest('a,button'))go();});
+  card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();go();}});
+ });
 });
