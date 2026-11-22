@@ -1,6 +1,9 @@
-/* Shared Health & Care 360 navigation */
+/* Health & Care 360° shared header component */
+.topbar{background:#292e32;color:#f2f3f3;font-size:12px;letter-spacing:.01em}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0}
 .hc360-site-header{position:sticky;top:0;z-index:1000;background:rgba(248,248,247,.98);backdrop-filter:blur(12px);border-bottom:1px solid #d9dcde;box-shadow:0 3px 16px rgba(35,40,44,.055)}
-.hc360-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:72px;padding-top:7px;padding-bottom:7px}
+.hc360-nav{display:flex;align-items:center;gap:14px;min-height:70px;padding-top:7px;padding-bottom:7px}
+.hc360-menu-toggle{display:none;border:1px solid #d2d5d6;background:#fff;color:#343a3e;border-radius:9px;width:42px;height:42px;font-size:23px;line-height:1;cursor:pointer;flex:0 0 42px}
 .hc360-nav .brand{display:flex;align-items:center;gap:11px;flex:0 0 auto;min-width:205px;text-decoration:none;color:#30363a;font-weight:700;letter-spacing:.035em;line-height:1.1;font-size:15px}
 .hc360-nav .brand .logo{width:42px;height:42px;display:grid;place-items:center;flex:0 0 42px;border-radius:13px;background:#f15a24;color:#fff;font-size:23px}
 .hc360-nav .brand small{display:block;margin-top:5px;color:#72797d;font-size:9px;letter-spacing:.12em;font-weight:600}
@@ -15,35 +18,30 @@
 .hc360-navright{display:flex;align-items:center;gap:9px;flex:0 0 auto}
 .hc360-nav .langselect{min-width:104px;max-width:116px;padding:10px 9px;border:1px solid #cfd3d5;border-radius:8px;background:#fff;color:#343a3e;font-family:inherit;font-weight:600;font-size:13px}
 .hc360-nav .hc360-nav-cta{white-space:nowrap;padding:11px 14px}
-.hc360-menu-toggle{display:none;border:1px solid #d2d5d6;background:#fff;color:#343a3e;border-radius:9px;width:42px;height:42px;font-size:23px;line-height:1;cursor:pointer}
-@media(max-width:1100px){.hc360-nav{gap:10px}.hc360-nav .brand{min-width:0;font-size:13px}.hc360-navlinks{gap:10px}.hc360-navlinks>a,.hc360-navlinks .service-trigger{font-size:12px}.hc360-nav .hc360-nav-cta{display:none}}
+.hc360-quicknav{position:relative;z-index:5;display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,38px);min-height:42px;padding:8px 16px;background:#f0f1ef;border-bottom:1px solid #d9dcde;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.hc360-quicknav::-webkit-scrollbar{display:none}
+.hc360-quicknav a{flex:0 0 auto;color:#34485a;text-decoration:none;font-size:12px;font-weight:700;white-space:nowrap}
+.hc360-quicknav a:hover,.hc360-quicknav a[aria-current="page"]{color:#e65320}
+.hc360-menu-backdrop{position:fixed;inset:0;background:rgba(14,22,28,.42);z-index:1190;opacity:0;visibility:hidden;transition:.25s}
+.hc360-menu-backdrop.is-visible{opacity:1;visibility:visible}
+.hc360-progress{position:fixed!important;top:var(--hc360-progress-top,112px)!important;left:0;right:0;width:100%;height:5px;z-index:999;margin:0;padding:0;display:block;overflow:hidden;pointer-events:none;background:#c5d0da;border:0;border-bottom:1px solid #aebdca;box-shadow:0 3px 8px rgba(16,42,67,.2)}
+.hc360-progress span{display:block;width:0;height:100%;background:#123f68;box-shadow:0 0 5px rgba(18,63,104,.45);transition:width .08s linear;will-change:width}
 @media(max-width:1100px){
- .hc360-nav{min-height:64px;padding:7px 0;gap:7px}
- .hc360-nav .brand{min-width:0;flex:0 1 auto;gap:8px;font-size:11px;letter-spacing:0;white-space:nowrap}
+ .hc360-nav{min-height:64px;padding:7px 0;gap:9px}
+ .hc360-menu-toggle{display:inline-grid;place-items:center;order:0}
+ .hc360-nav .brand{min-width:0;flex:0 1 auto;order:1;gap:8px;font-size:12px;letter-spacing:0;white-space:nowrap}
  .hc360-nav .brand .logo{width:36px;height:36px;flex-basis:36px;border-radius:10px;font-size:20px}
  .hc360-nav .brand small{display:none}
- .hc360-navright{gap:7px;margin-left:auto}
- .hc360-nav .langselect{width:82px;min-width:82px;padding:8px 5px;font-size:11px}
- .hc360-menu-toggle{display:inline-grid;place-items:center;flex:0 0 40px;width:40px;height:40px;margin:0 4px 0 0;order:-1}
- .hc360-nav .brand{order:0}
- .hc360-navright{order:2}
+ .hc360-navright{order:3;margin-left:auto;gap:7px}
+ .hc360-nav .langselect{width:88px;min-width:88px;padding:8px 5px;font-size:12px}
+ .hc360-nav .hc360-nav-cta{display:none}
  .hc360-navlinks{display:flex;position:fixed;top:0;left:0;bottom:0;width:min(82vw,340px);height:100dvh;z-index:1200;background:#f8f8f7;border:0;border-right:1px solid #d7dadd;box-shadow:18px 0 45px rgba(16,25,32,.22);padding:88px 20px 24px;align-items:stretch;flex-direction:column;gap:3px;overflow-y:auto;transform:translateX(-110%);visibility:hidden;transition:transform .28s ease,visibility .28s}
  .hc360-navlinks.is-open{transform:translateX(0);visibility:visible}
  .hc360-navlinks>a,.hc360-navlinks .service-trigger{display:flex;width:100%;padding:14px 12px;font-size:16px;text-align:left;border-radius:9px}
  .hc360-nav .service-dropdown{width:100%}
  .hc360-nav .service-dropdown-panel{position:static;box-shadow:none;border:0;background:#efefed;border-radius:9px;margin:0 0 6px;padding:5px 8px}
  .hc360-nav .service-dropdown-panel a{padding:12px;font-size:15px}
- .hc360-menu-backdrop{position:fixed;inset:0;background:rgba(14,22,28,.42);z-index:1190;opacity:0;visibility:hidden;transition:.25s}
- .hc360-menu-backdrop.is-visible{opacity:1;visibility:visible}
+ .hc360-quicknav{justify-content:flex-start;gap:24px;min-height:40px;padding-left:16px;padding-right:16px}
 }
-@media(max-width:370px){.hc360-nav .brand{font-size:10px}.hc360-nav .brand .logo{width:32px;height:32px;flex-basis:32px}.hc360-nav .langselect{width:74px;min-width:74px}}
-
-
-/* Shared scroll progress: fixed directly below the sticky header on every page. */
-.hc360-progress{
- position:fixed !important;top:var(--hc360-progress-top,72px) !important;left:0;right:0;width:100%;height:6px;
- z-index:999;margin:0;padding:0;display:block;overflow:hidden;pointer-events:none;
- background:#c5d0da;border:0;border-bottom:1px solid #aebdca;box-shadow:0 3px 8px rgba(16,42,67,.24);
-}
-.hc360-progress span{display:block;width:0;height:100%;min-width:0;background:#123f68;box-shadow:0 0 5px rgba(18,63,104,.5);transition:width .08s linear;will-change:width}
-@media(prefers-reduced-motion:reduce){.hc360-progress span{transition:none}}
+@media(max-width:430px){.topbar .wrap{font-size:10px;padding:8px 0}.topbar .wrap span:first-child{max-width:58%;line-height:1.35}.topbar .wrap span:last-child{white-space:nowrap;font-size:9px}.hc360-nav{gap:7px}.hc360-nav .brand{font-size:10px}.hc360-nav .brand .logo{width:33px;height:33px;flex-basis:33px}.hc360-menu-toggle{width:38px;height:38px;flex-basis:38px}.hc360-nav .langselect{width:78px;min-width:78px;font-size:11px}.hc360-quicknav{gap:20px}}
+@media(prefers-reduced-motion:reduce){.hc360-progress span,.hc360-navlinks,.hc360-menu-backdrop{transition:none}}

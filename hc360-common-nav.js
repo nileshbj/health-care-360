@@ -1,7 +1,20 @@
-document.addEventListener('DOMContentLoaded',()=>{
+async function loadHC360Header(){
+ const mount=document.getElementById('hc360-shared-header');
+ if(!mount)return;
+ try{
+  const response=await fetch('hc360-header.html',{cache:'no-cache'});
+  if(!response.ok)throw new Error('Header component request failed: '+response.status);
+  mount.innerHTML=await response.text();
+  const holder=document.getElementById('hc360-language-holder');
+  const select=holder?.querySelector('.langselect');
+  const target=document.getElementById('hc360-language-target');
+  if(select&&target)target.appendChild(select);
+  initHC360Header();
+ }catch(error){console.error('Health & Care 360 shared header could not load.',error);mount.innerHTML='<div class="hc360-component-error">Navigation could not load. Please refresh the page.</div>';}
+}
+function initHC360Header(){
+
  const nav=document.getElementById('hc360-main-nav'),toggle=document.querySelector('.hc360-menu-toggle');
- const brand=document.querySelector('.hc360-nav .brand');
- if(brand&&toggle&&toggle.parentElement===brand.parentElement){brand.parentElement.insertBefore(toggle,brand);}
  const dropdown=document.querySelector('.hc360-nav .service-dropdown'),trigger=dropdown?.querySelector('.service-trigger');
  let menuHistory=false;
  const backdrop=document.createElement('div');backdrop.className='hc360-menu-backdrop';document.body.appendChild(backdrop);
@@ -15,6 +28,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  window.addEventListener('popstate',()=>{if(nav?.classList.contains('is-open')){menuHistory=false;setClosed();}dropdown?.classList.remove('is-open');});
  trigger?.addEventListener('click',e=>{e.stopPropagation();const opened=!dropdown.classList.contains('is-open');dropdown.classList.toggle('is-open',opened);trigger.setAttribute('aria-expanded',String(opened));});
  document.addEventListener('pointerdown',e=>{if(dropdown&&!dropdown.contains(e.target))dropdown.classList.remove('is-open');});
+ const currentPage=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+ document.querySelectorAll('.hc360-quicknav a').forEach(a=>{const target=(a.getAttribute('href')||'').toLowerCase();if(target===currentPage)a.setAttribute('aria-current','page');});
  const lang=document.querySelector('.hc360-nav .langselect');
  if(lang){try{const saved=localStorage.getItem('hc360-language');if(saved&&['en','mr','hi'].includes(saved)){lang.value=saved;if(typeof setLang==='function')setLang(saved);else if(typeof changeLanguage==='function')changeLanguage(saved);}}catch(e){}}
  // Shared scroll progress indicator: ensure it exists on every page.
@@ -31,7 +46,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.body.appendChild(progressBar);
  }
  const fill=progressBar.querySelector('#hc360-progress-fill')||progressBar.querySelector('span');
- const siteHeader=document.querySelector('.hc360-site-header');
+ const siteHeader=document.querySelector('.hc360-quicknav')||document.querySelector('.hc360-site-header');
  let progressFrame=0;
  const updateProgress=()=>{
   if(progressFrame)cancelAnimationFrame(progressFrame);
@@ -73,4 +88,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   card.addEventListener('click',e=>{if(!e.target.closest('a,button'))go();});
   card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();go();}});
  });
-});
+
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',loadHC360Header,{once:true});
+else loadHC360Header();

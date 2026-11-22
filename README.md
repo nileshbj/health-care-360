@@ -1,18 +1,15 @@
-Health & Care 360° — single homepage update
+Health & Care 360° — shared header component update
 
-This package keeps Sample 1 as the only homepage and removes Sample 2.
-Replace the website files in the GitHub repository with the contents of this ZIP.
-Keep the assets/ folder intact. Netlify should redeploy after the commit.
+Replace these files in the Cloudflare Pages/GitHub project root:
+- hc360-header.html (new shared header and quick-links component)
+- hc360-common-nav.js
+- hc360-common-nav.css
+- index.html
+- health-insurance.html
+- life-insurance.html
+- corporate-solutions.html
+- ohc.html
 
-Homepage updates:
-- Rotating two-line hero messages with dots and a timed progress indicator.
-- Quick text navigation below the header.
-- Scroll progress line in dark blue with a subtle shadow.
-- Compact mobile top spacing.
-- Left-side slide-in mobile navigation with backdrop, close button, Escape and browser Back handling.
-- Clickable service pills and service cards.
-- "Explore our services" now links directly to the Services section.
+The five pages now contain a small mount point and retain their own language selector so existing page translation scripts continue to work. The common component supplies the topbar, main navigation, far-left mobile menu, language-selector placement, WhatsApp CTA and the four service quick links. The shared script initializes the menu and scroll progress after loading the component.
 
-All existing service pages and language selection are retained.
-
-- Scroll progress is now a sticky 6px bar immediately below the site navigation, with its sticky offset measured from the actual header height.
+Upload all eight files to the repository root. No assets need replacing. The component is fetched from the same Cloudflare Pages origin, so publish hc360-header.html alongside the JS and CSS files.
