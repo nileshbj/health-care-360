@@ -17,10 +17,43 @@ document.addEventListener('DOMContentLoaded',()=>{
  document.addEventListener('pointerdown',e=>{if(dropdown&&!dropdown.contains(e.target))dropdown.classList.remove('is-open');});
  const lang=document.querySelector('.hc360-nav .langselect');
  if(lang){try{const saved=localStorage.getItem('hc360-language');if(saved&&['en','mr','hi'].includes(saved)){lang.value=saved;if(typeof setLang==='function')setLang(saved);else if(typeof changeLanguage==='function')changeLanguage(saved);}}catch(e){}}
- // Scroll progress indicator
- const fill=document.getElementById('hc360-progress-fill');
- const updateProgress=()=>{if(!fill)return;const root=document.documentElement;const max=Math.max(0,root.scrollHeight-window.innerHeight);const y=Math.max(0,window.scrollY||root.scrollTop||0);const pct=max>1?Math.max(0,Math.min(100,(y/max)*100)):0;fill.style.width=pct.toFixed(2)+'%';};
- window.addEventListener('scroll',updateProgress,{passive:true});window.addEventListener('resize',updateProgress);window.addEventListener('load',updateProgress);if('ResizeObserver'in window){new ResizeObserver(updateProgress).observe(document.body);}updateProgress();
+ // Shared scroll progress indicator: ensure it exists on every page.
+ let progressBar=document.querySelector('.hc360-progress');
+ if(!progressBar){
+  progressBar=document.createElement('div');
+  progressBar.className='hc360-progress';
+  progressBar.setAttribute('role','progressbar');
+  progressBar.setAttribute('aria-label','Page reading progress');
+  progressBar.setAttribute('aria-valuemin','0');
+  progressBar.setAttribute('aria-valuemax','100');
+  progressBar.setAttribute('aria-valuenow','0');
+  progressBar.innerHTML='<span id=\"hc360-progress-fill\"></span>';
+  document.body.appendChild(progressBar);
+ }
+ const fill=progressBar.querySelector('#hc360-progress-fill')||progressBar.querySelector('span');
+ const siteHeader=document.querySelector('.hc360-site-header');
+ let progressFrame=0;
+ const updateProgress=()=>{
+  if(progressFrame)cancelAnimationFrame(progressFrame);
+  progressFrame=requestAnimationFrame(()=>{
+   const headerBottom=siteHeader?Math.max(0,siteHeader.getBoundingClientRect().bottom):0;
+   document.documentElement.style.setProperty('--hc360-progress-top',Math.round(headerBottom)+'px');
+   const root=document.scrollingElement||document.documentElement;
+   const pageHeight=Math.max(root.scrollHeight,document.body.scrollHeight,document.documentElement.scrollHeight);
+   const viewportHeight=window.innerHeight||document.documentElement.clientHeight;
+   const maxScroll=Math.max(0,pageHeight-viewportHeight);
+   const currentScroll=Math.max(0,window.scrollY||root.scrollTop||0);
+   const ratio=maxScroll>0?Math.min(1,Math.max(0,currentScroll/maxScroll)):0;
+   if(fill)fill.style.width=(ratio*100).toFixed(2)+'%';
+   progressBar.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
+  });
+ };
+ window.addEventListener('scroll',updateProgress,{passive:true});
+ window.addEventListener('resize',updateProgress,{passive:true});
+ window.addEventListener('load',updateProgress);
+ window.addEventListener('pageshow',updateProgress);
+ if('ResizeObserver'in window){const observer=new ResizeObserver(updateProgress);observer.observe(document.body);if(siteHeader)observer.observe(siteHeader);}
+ updateProgress();
  // Two-message hero carousel
  const title=document.getElementById('heroRotatorTitle'),progress=document.getElementById('heroSlideProgress'),dots=[...document.querySelectorAll('.hero-dot')];
  if(title&&dots.length){
