@@ -19,7 +19,6 @@
 .service:focus-visible,.path-card a:focus-visible,.hc360-quicknav a:focus-visible{outline:3px solid #164f83;outline-offset:3px}
 .service:hover{transform:translateY(-3px);border-color:#f15a24;box-shadow:0 14px 35px rgba(31,45,55,.10)}
 @media(max-width:760px){
- .hc360-progress{top:64px}
  .hc360-quicknav{justify-content:flex-start;padding:9px 15px;gap:22px}
  .hc360-quicknav a{font-size:11px}
  .hero-inner{padding-top:27px!important;padding-bottom:30px!important;gap:8px!important}

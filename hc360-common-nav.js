@@ -46,13 +46,13 @@ function initHC360Header(){
   document.body.appendChild(progressBar);
  }
  const fill=progressBar.querySelector('#hc360-progress-fill')||progressBar.querySelector('span');
- const siteHeader=document.querySelector('.hc360-quicknav')||document.querySelector('.hc360-site-header');
+ const siteHeader=document.querySelector('.hc360-site-header');
  let progressFrame=0;
  const updateProgress=()=>{
   if(progressFrame)cancelAnimationFrame(progressFrame);
   progressFrame=requestAnimationFrame(()=>{
-   const headerBottom=siteHeader?Math.max(0,siteHeader.getBoundingClientRect().bottom):0;
-   document.documentElement.style.setProperty('--hc360-progress-top',Math.round(headerBottom)+'px');
+   const headerHeight=siteHeader?Math.round(siteHeader.getBoundingClientRect().height):70;
+   document.documentElement.style.setProperty('--hc360-progress-top',headerHeight+'px');
    const root=document.scrollingElement||document.documentElement;
    const pageHeight=Math.max(root.scrollHeight,document.body.scrollHeight,document.documentElement.scrollHeight);
    const viewportHeight=window.innerHeight||document.documentElement.clientHeight;
