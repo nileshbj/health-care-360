@@ -15,17 +15,25 @@ document.addEventListener('DOMContentLoaded',()=>{
  document.addEventListener('pointerdown',e=>{if(dropdown&&!dropdown.contains(e.target))dropdown.classList.remove('is-open');});
  const lang=document.querySelector('.hc360-nav .langselect');
  if(lang){try{const saved=localStorage.getItem('hc360-language');if(saved&&['en','mr','hi'].includes(saved)){lang.value=saved;if(typeof setLang==='function')setLang(saved);else if(typeof changeLanguage==='function')changeLanguage(saved);}}catch(e){}}
- // Scroll progress indicator
+ // Scroll progress indicator: sticky directly beneath the site navigation.
  const fill=document.getElementById('hc360-progress-fill');
+ const siteHeader=document.querySelector('.hc360-site-header');
  let progressFrame=0;
+ const measureHeader=()=>{
+  if(!siteHeader)return;
+  const headerHeight=Math.ceil(siteHeader.getBoundingClientRect().height);
+  document.documentElement.style.setProperty('--hc360-header-height',headerHeight+'px');
+ };
  const updateProgress=()=>{
   if(!fill)return;
   if(progressFrame)cancelAnimationFrame(progressFrame);
   progressFrame=requestAnimationFrame(()=>{
+   measureHeader();
    const root=document.scrollingElement||document.documentElement;
-   const pageHeight=Math.max(root.scrollHeight,document.body?.scrollHeight||0);
-   const maxScroll=Math.max(0,pageHeight-window.innerHeight);
-   const currentScroll=Math.max(0,window.pageYOffset||root.scrollTop||document.documentElement.scrollTop||0);
+   const pageHeight=Math.max(root.scrollHeight,document.body?.scrollHeight||0,document.documentElement.scrollHeight||0);
+   const viewportHeight=window.innerHeight||document.documentElement.clientHeight;
+   const maxScroll=Math.max(0,pageHeight-viewportHeight);
+   const currentScroll=Math.max(0,window.scrollY||root.scrollTop||0);
    const ratio=maxScroll>0?Math.min(1,Math.max(0,currentScroll/maxScroll)):0;
    fill.style.width=(ratio*100).toFixed(2)+'%';
    fill.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
@@ -35,7 +43,12 @@ document.addEventListener('DOMContentLoaded',()=>{
  window.addEventListener('resize',updateProgress,{passive:true});
  window.addEventListener('load',updateProgress);
  window.addEventListener('pageshow',updateProgress);
- if('ResizeObserver'in window){new ResizeObserver(updateProgress).observe(document.body);}
+ if('ResizeObserver'in window){
+  const progressObserver=new ResizeObserver(updateProgress);
+  if(document.body)progressObserver.observe(document.body);
+  if(siteHeader)progressObserver.observe(siteHeader);
+ }
+ measureHeader();
  updateProgress();
  // Two-message hero carousel
  const title=document.getElementById('heroRotatorTitle'),progress=document.getElementById('heroSlideProgress'),dots=[...document.querySelectorAll('.hero-dot')];

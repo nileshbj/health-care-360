@@ -14,3 +14,5 @@ Homepage updates:
 - "Explore our services" now links directly to the Services section.
 
 All existing service pages and language selection are retained.
+
+- Scroll progress is now a sticky 6px bar immediately below the site navigation, with its sticky offset measured from the actual header height.
