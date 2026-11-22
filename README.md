@@ -15,3 +15,7 @@ The pages use Arya for display headings and Noto Sans / Noto Sans Devanagari for
 
 ## Notes
 The website is informational. Insurance availability, eligibility, premiums, benefits, exclusions and claims are subject to insurer terms and policy wording. Any solicitation or distribution must be handled by appropriately authorised persons/entities.
+
+
+## Shared navigation consistency update
+All six pages now use the same navigation structure and responsive mobile menu. Keep `hc360-common-nav.css` and `hc360-common-nav.js` at the repository root with the HTML files.

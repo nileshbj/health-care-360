@@ -7,8 +7,18 @@ body{background:#edf0eb;color:#263c33}.ohc-page-hero{padding:65px 0 50px;backgro
 
 /* Final orange/grey overrides for this page */
 body{background:#f4f4f3;color:#292e32}.ohc-page-hero{background:linear-gradient(125deg,#e9eaea,#f4f4f3 65%,#e3e4e4)}.ohc-page-hero h1,.ohc-page-title h2,.ohc-planning h2,.ohc-detail-card h3,.ohc-step h3{color:#292e32}.ohc-page-hero p,.ohc-page-title p,.ohc-detail-card p,.ohc-step p{color:#626a70}.ohc-hero-visual{background:linear-gradient(145deg,#f6d9cc,#e9eaea)}.ohc-hero-visual:before,.ohc-hero-visual:after{border-color:rgba(239,84,35,.22)}.ohc-hero-symbol{color:#ef5423}.ohc-page-section.soft{background:#e8e9e9}.ohc-detail-card,.ohc-step{background:#fff;border-color:#dedfe0}.ohc-detail-card .ico{background:#fff0e9;color:#ef5423}.ohc-planning{background:#fff;border-color:#dedfe0}.ohc-list li{color:#42494e}.ohc-list li:before,.ohc-step b{color:#ef5423}.ohc-page-cta{background:#30363a}.page-nav .brand{color:#292e32}.page-nav .logo{background:#ef5423!important}.page-footer{background:#252a2e}
-</style></head><body>
-<header style="background:#f7f7f6;border-bottom:1px solid #dedfe0"><div class="wrap page-nav"><a class="brand" href="index.html"><span class="logo" style="background:#292e32">♥</span><span>HEALTH & CARE 360°<small>YOUR HEALTH. YOUR PROTECTION.</small></span></a><div style="display:flex;align-items:center;gap:10px"><a class="sample-variant-link" href="index.html">Home</a><a class="sample-variant-link" href="health-insurance.html" data-t="health">Health Insurance</a><select class="langselect" id="lang" aria-label="Choose language"><option value="en">English</option><option value="mr">मराठी</option><option value="hi">हिंदी</option></select></div></div></header>
+</style><link rel="stylesheet" href="hc360-common-nav.css">
+</head><body>
+<header class="hc360-site-header"><div class="wrap nav hc360-nav">
+<a class="brand" href="index.html#home" aria-label="Health and Care 360 home"><span class="logo">♥</span><span>HEALTH &amp; CARE 360°<small>YOUR HEALTH. YOUR PROTECTION.</small></span></a>
+<nav class="navlinks hc360-navlinks" id="hc360-main-nav" aria-label="Main navigation">
+<a href="index.html#home">Home</a>
+<div class="service-dropdown"><button class="service-trigger" type="button" aria-expanded="false">Services <span>⌄</span></button><div class="service-dropdown-panel">
+<a href="health-insurance.html">Health Insurance</a><a href="life-insurance.html">Life Insurance</a><a href="corporate-solutions.html">Corporate Solutions</a><a href="ohc.html">OHC &amp; Health Camps</a></div></div>
+<a href="index.html#knowledge">Knowledge Centre</a><a href="index.html#about">How it works</a><a href="index.html#contact">Contact</a>
+</nav>
+<div class="navright hc360-navright"><select class="langselect" id="lang" aria-label="Choose language" ><option value="en">English</option><option value="mr">मराठी</option><option value="hi">हिंदी</option></select><a class="btn primary hc360-nav-cta" href="https://wa.me/919665926095?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener">WhatsApp us</a><button class="mobilemenu hc360-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="hc360-main-nav">☰</button></div>
+</div></header>
 <main>
 <section class="ohc-page-hero"><div class="wrap"><div><div class="kicker" data-t="kicker">NASHIK · WORKPLACE HEALTH</div><h1 data-t="title">Workplace health, planned around your people.</h1><p data-t="intro">Explore occupational health centre support, employee health check-ups and on-site health camps for businesses, factories, offices and institutions across Nashik district.</p><a class="btn primary" href="#enquiry" data-t="ctaTop">Discuss your workplace needs →</a></div><div class="ohc-hero-visual" aria-hidden="true"><div class="ohc-hero-symbol">✚</div></div></div></section>
 <section class="ohc-page-section"><div class="wrap"><div class="ohc-page-title"><div class="kicker" data-t="servicesKicker">OHC & HEALTH CAMP OPTIONS</div><h2 data-t="servicesTitle">Support for everyday workplace health needs.</h2><p data-t="servicesIntro">Start with the requirement. The scope, qualified professionals and delivery arrangements can be discussed and confirmed for each organisation.</p></div><div class="ohc-detail-grid">
@@ -28,4 +38,5 @@ hi:{kicker:'नाशिक · कार्यस्थल स्वास्थ
 };
 function setLang(lang){document.documentElement.lang=lang;document.querySelectorAll('[data-t]').forEach(el=>{const key=el.getAttribute('data-t');if(copy[lang][key])el.textContent=copy[lang][key]});const msg={en:'Hello, I would like to discuss OHC or employee health camp requirements in Nashik.',mr:'नमस्कार, मला नाशिकमधील OHC किंवा कर्मचारी आरोग्य शिबिराच्या गरजांबद्दल चर्चा करायची आहे.',hi:'नमस्कार, मैं नाशिक में OHC या कर्मचारी स्वास्थ्य शिविर की जरूरतों पर चर्चा करना चाहता/चाहती हूँ।'}[lang];document.getElementById('waLink').href='https://wa.me/919665926095?text='+encodeURIComponent(msg);document.getElementById('lang').value=lang;}
 document.getElementById('lang').addEventListener('change',e=>setLang(e.target.value));let saved='en';try{saved=localStorage.getItem('hc360-language')||'en'}catch(e){}setLang(copy[saved]?saved:'en');
-</script></body></html>
+</script><script src="hc360-common-nav.js" defer></script>
+</body></html>

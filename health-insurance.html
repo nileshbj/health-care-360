@@ -10,9 +10,19 @@
 .health-nav{display:flex;align-items:center;gap:18px}.health-nav a{font-size:13px;font-weight:700;color:#42494e}.health-nav a:hover{color:#ef5423}
 @media(max-width:850px){.health-hero-grid{grid-template-columns:1fr;gap:25px}.health-hero img{height:300px}.health-grid{grid-template-columns:repeat(2,1fr)}.compare-panel{grid-template-columns:1fr;gap:15px}}
 @media(max-width:600px){.health-hero{padding:38px 0}.health-hero h1{font-size:37px;line-height:1.2}.health-hero p{font-size:16px}.health-hero img{height:225px;border-radius:8px 45px 8px 8px}.health-section{padding:50px 0}.health-grid{grid-template-columns:1fr}.health-card-body{padding:21px}.compare-panel{padding:23px}.compare-panel h2{font-size:28px}.compare-list{grid-template-columns:1fr}.health-cta{display:block;padding:25px}.health-cta .btn{margin-top:18px;width:100%}.health-nav{gap:8px}.health-nav a{font-size:11px}.health-nav .hide-mobile{display:none}}
-</style></head><body>
+</style><link rel="stylesheet" href="hc360-common-nav.css">
+</head><body>
 <div class="topbar"><div class="wrap"><span data-t="topline">Thoughtful guidance for your family's health protection</span><span>Serving Nashik district · By appointment</span></div></div>
-<header><div class="wrap nav"><a class="brand" href="index.html"><span class="logo">♥</span><span>HEALTH & CARE 360°<small>YOUR HEALTH. YOUR PROTECTION.</small></span></a><nav class="health-nav"><a href="index.html" data-t="home">Home</a><a class="hide-mobile" href="ohc.html" data-t="ohc">OHC & Camps</a></nav><div class="navright"><select class="langselect" id="lang" aria-label="Choose language"><option value="en">English</option><option value="mr">मराठी</option><option value="hi">हिंदी</option></select><a class="btn primary" href="#review" data-t="navCta">Review my needs</a></div></div></header>
+<header class="hc360-site-header"><div class="wrap nav hc360-nav">
+<a class="brand" href="index.html#home" aria-label="Health and Care 360 home"><span class="logo">♥</span><span>HEALTH &amp; CARE 360°<small>YOUR HEALTH. YOUR PROTECTION.</small></span></a>
+<nav class="navlinks hc360-navlinks" id="hc360-main-nav" aria-label="Main navigation">
+<a href="index.html#home">Home</a>
+<div class="service-dropdown"><button class="service-trigger" type="button" aria-expanded="false">Services <span>⌄</span></button><div class="service-dropdown-panel">
+<a href="health-insurance.html">Health Insurance</a><a href="life-insurance.html">Life Insurance</a><a href="corporate-solutions.html">Corporate Solutions</a><a href="ohc.html">OHC &amp; Health Camps</a></div></div>
+<a href="index.html#knowledge">Knowledge Centre</a><a href="index.html#about">How it works</a><a href="index.html#contact">Contact</a>
+</nav>
+<div class="navright hc360-navright"><select class="langselect" id="lang" aria-label="Choose language" ><option value="en">English</option><option value="mr">मराठी</option><option value="hi">हिंदी</option></select><a class="btn primary hc360-nav-cta" href="https://wa.me/919665926095?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener">WhatsApp us</a><button class="mobilemenu hc360-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="hc360-main-nav">☰</button></div>
+</div></header>
 <main>
 <section class="health-hero"><div class="wrap health-hero-grid"><div><div class="kicker" data-t="kicker">HEALTH INSURANCE · NASHIK</div><h1 data-t="title">Health cover should make sense before you need it.</h1><p data-t="intro">Understand the options available for you and your family. We help you review the features, conditions and questions that matter before you decide.</p><a class="btn primary" href="#review" data-t="heroCta">Talk through your health cover →</a><div class="health-proof"><span data-t="proof1">Individual & family cover</span><span data-t="proof2">Senior citizen options</span><span data-t="proof3">Policy review support</span></div></div><img src="assets/family-hero.png" alt="Indian family sitting together at home"></div></section>
 <section class="health-section"><div class="wrap"><div class="section-head"><div class="kicker" data-t="serviceKicker">EXPLORE HEALTH COVER</div><h2 data-t="serviceTitle">Different needs. Different things to consider.</h2><p data-t="serviceIntro">Start with the people to be covered, their health needs and the hospitals you may prefer. The right policy depends on the details.</p></div><div class="health-grid">
@@ -41,4 +51,5 @@ hi:{topline:'आपके परिवार के स्वास्थ्य 
 };
 function setLang(lang){if(!copy[lang])lang='en';document.documentElement.lang=lang;document.querySelectorAll('[data-t]').forEach(el=>{const k=el.dataset.t;if(copy[lang][k])el.textContent=copy[lang][k]});document.getElementById('lang').value=lang;const msg={en:'Hello, I would like to review health insurance options for my family.',mr:'नमस्कार, मला माझ्या कुटुंबासाठी आरोग्य विम्याच्या पर्यायांचा आढावा घ्यायचा आहे.',hi:'नमस्कार, मैं अपने परिवार के लिए स्वास्थ्य बीमा विकल्पों की समीक्षा करना चाहता/चाहती हूँ।'}[lang];document.getElementById('healthWa').href='https://wa.me/919665926095?text='+encodeURIComponent(msg);try{localStorage.setItem('hc360-language',lang)}catch(e){}}
 document.getElementById('lang').addEventListener('change',e=>setLang(e.target.value));let saved='en';try{saved=localStorage.getItem('hc360-language')||'en'}catch(e){}setLang(saved);
-</script></body></html>
+</script><script src="hc360-common-nav.js" defer></script>
+</body></html>

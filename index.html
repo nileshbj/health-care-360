@@ -14,7 +14,8 @@
 <style>
 .service-dropdown{position:relative}.service-trigger{font-size:13px;font-weight:750;color:#42494e;padding:12px 0;display:inline-flex;gap:6px;align-items:center}.service-dropdown-panel{display:none;position:absolute;top:100%;left:-12px;min-width:210px;background:#fff;border:1px solid #dedfe0;border-radius:10px;padding:8px;box-shadow:0 14px 32px rgba(30,34,38,.14);z-index:50}.service-dropdown:hover .service-dropdown-panel,.service-dropdown:focus-within .service-dropdown-panel{display:grid}.service-dropdown-panel a{padding:10px 12px;border-radius:6px;font-size:13px!important}.service-dropdown-panel a:hover{background:#fff0e9;color:#d94317}.navlinks{gap:22px}
 @media(max-width:600px){.service-dropdown-panel{position:static;box-shadow:none;border:0;padding-left:12px}.service-dropdown:focus-within .service-dropdown-panel{display:grid}}
-</style></head>
+</style><link rel="stylesheet" href="hc360-common-nav.css">
+</head>
 <body>
 
 <div id="languageScreen">
@@ -35,11 +36,16 @@
 </div>
 <div id="site">
   <div class="topbar"><div class="wrap"><span>Thoughtful guidance for your family's protection and wellbeing</span><span>Serving Nashik district · By appointment</span></div></div>
-  <header><div class="wrap nav">
-    <a class="brand" href="#home"><span class="logo">♥</span><span>HEALTH & CARE 360°<small>YOUR HEALTH. YOUR PROTECTION.</small></span></a>
-    <nav class="navlinks"><div class="service-dropdown"><a class="service-trigger" href="#services">Services <span>⌄</span></a><div class="service-dropdown-panel"><a href="health-insurance.html">Health Insurance</a><a href="life-insurance.html">Life Insurance</a><a href="corporate-solutions.html">Corporate Solutions</a><a href="ohc.html">OHC &amp; Health Camps</a></div></div><a href="#knowledge" data-i="navKnowledge">Knowledge Centre</a><a href="#about" data-i="navAbout">How it works</a><a href="#contact" data-i="navContact">Contact</a></nav>
-    <div class="navright"><a class="sample-variant-link" href="./sample2.html">View Sample 2</a><select class="langselect" aria-label="Choose language" onchange="changeLanguage(this.value)"><option value="en" selected>English</option><option value="mr">मराठी</option><option value="hi">हिंदी</option></select><a class="btn primary" href="#contact" data-i="navTalk">Talk to an advisor</a><button class="mobilemenu" type="button" aria-label="Open navigation" aria-expanded="false" onclick="const n=this.closest('.nav').querySelector('.navlinks');const open=n.classList.toggle('is-open');this.setAttribute('aria-expanded',open?'true':'false')">☰</button></div>
-  </div></header>
+  <header class="hc360-site-header"><div class="wrap nav hc360-nav">
+<a class="brand" href="index.html#home" aria-label="Health and Care 360 home"><span class="logo">♥</span><span>HEALTH &amp; CARE 360°<small>YOUR HEALTH. YOUR PROTECTION.</small></span></a>
+<nav class="navlinks hc360-navlinks" id="hc360-main-nav" aria-label="Main navigation">
+<a href="index.html#home">Home</a>
+<div class="service-dropdown"><button class="service-trigger" type="button" aria-expanded="false">Services <span>⌄</span></button><div class="service-dropdown-panel">
+<a href="health-insurance.html">Health Insurance</a><a href="life-insurance.html">Life Insurance</a><a href="corporate-solutions.html">Corporate Solutions</a><a href="ohc.html">OHC &amp; Health Camps</a></div></div>
+<a href="index.html#knowledge">Knowledge Centre</a><a href="index.html#about">How it works</a><a href="index.html#contact">Contact</a>
+</nav>
+<div class="navright hc360-navright"><a class="sample-variant-link" href="sample2.html">Sample 2</a><select class="langselect" id="site-lang" aria-label="Choose language" onchange="try{localStorage.setItem('hc360-language',this.value)}catch(e){};if(typeof changeLanguage==='function')changeLanguage(this.value)"><option value="en">English</option><option value="mr">मराठी</option><option value="hi">हिंदी</option></select><a class="btn primary hc360-nav-cta" href="https://wa.me/919665926095?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener">WhatsApp us</a><button class="mobilemenu hc360-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="hc360-main-nav">☰</button></div>
+</div></header>
   <main>
     <section class="hero" id="home"><div class="wrap hero-inner">
       <div><div class="eyebrow" data-i="eyebrow">YOUR HEALTH. YOUR PROTECTION.</div><h1 data-i="heroTitle">Good decisions begin with good guidance.</h1><p data-i="heroDesc">Understand your options. Make informed decisions. Get support with insurance and healthcare needs for your family or organisation.</p><div class="hero-actions"><a class="btn primary" href="#paths" data-i="heroPrimary">Explore our services <span>→</span></a><a class="btn outline" href="#contact" data-i="heroSecondary">Request a callback</a></div><div class="hero-note"><span><b class="check">✓</b><span data-i="note1">Personal and family guidance</span></span><span><b class="check">✓</b><span data-i="note2">Corporate healthcare solutions</span></span></div></div>
@@ -274,5 +280,6 @@ document.addEventListener("click", function(e){
 });
 
 </script>
+<script src="hc360-common-nav.js" defer></script>
 </body>
 </html>
