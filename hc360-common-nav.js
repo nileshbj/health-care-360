@@ -17,8 +17,26 @@ document.addEventListener('DOMContentLoaded',()=>{
  if(lang){try{const saved=localStorage.getItem('hc360-language');if(saved&&['en','mr','hi'].includes(saved)){lang.value=saved;if(typeof setLang==='function')setLang(saved);else if(typeof changeLanguage==='function')changeLanguage(saved);}}catch(e){}}
  // Scroll progress indicator
  const fill=document.getElementById('hc360-progress-fill');
- const updateProgress=()=>{if(!fill)return;const root=document.documentElement;const max=Math.max(0,root.scrollHeight-window.innerHeight);const y=Math.max(0,window.scrollY||root.scrollTop||0);const pct=max>1?Math.max(0,Math.min(100,(y/max)*100)):0;fill.style.width=pct.toFixed(2)+'%';};
- window.addEventListener('scroll',updateProgress,{passive:true});window.addEventListener('resize',updateProgress);window.addEventListener('load',updateProgress);if('ResizeObserver'in window){new ResizeObserver(updateProgress).observe(document.body);}updateProgress();
+ let progressFrame=0;
+ const updateProgress=()=>{
+  if(!fill)return;
+  if(progressFrame)cancelAnimationFrame(progressFrame);
+  progressFrame=requestAnimationFrame(()=>{
+   const root=document.scrollingElement||document.documentElement;
+   const pageHeight=Math.max(root.scrollHeight,document.body?.scrollHeight||0);
+   const maxScroll=Math.max(0,pageHeight-window.innerHeight);
+   const currentScroll=Math.max(0,window.pageYOffset||root.scrollTop||document.documentElement.scrollTop||0);
+   const ratio=maxScroll>0?Math.min(1,Math.max(0,currentScroll/maxScroll)):0;
+   fill.style.width=(ratio*100).toFixed(2)+'%';
+   fill.setAttribute('aria-valuenow',String(Math.round(ratio*100)));
+  });
+ };
+ window.addEventListener('scroll',updateProgress,{passive:true});
+ window.addEventListener('resize',updateProgress,{passive:true});
+ window.addEventListener('load',updateProgress);
+ window.addEventListener('pageshow',updateProgress);
+ if('ResizeObserver'in window){new ResizeObserver(updateProgress).observe(document.body);}
+ updateProgress();
  // Two-message hero carousel
  const title=document.getElementById('heroRotatorTitle'),progress=document.getElementById('heroSlideProgress'),dots=[...document.querySelectorAll('.hero-dot')];
  if(title&&dots.length){
