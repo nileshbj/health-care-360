@@ -24,7 +24,9 @@
  .hc360-nav .brand small{display:none}
  .hc360-navright{gap:7px;margin-left:auto}
  .hc360-nav .langselect{width:82px;min-width:82px;padding:8px 5px;font-size:11px}
- .hc360-menu-toggle{display:inline-grid;place-items:center;flex:0 0 40px;width:40px;height:40px;margin-right:4px}
+ .hc360-menu-toggle{display:inline-grid;place-items:center;flex:0 0 40px;width:40px;height:40px;margin:0 4px 0 0;order:-1}
+ .hc360-nav .brand{order:0}
+ .hc360-navright{order:2}
  .hc360-navlinks{display:flex;position:fixed;top:0;left:0;bottom:0;width:min(82vw,340px);height:100dvh;z-index:1200;background:#f8f8f7;border:0;border-right:1px solid #d7dadd;box-shadow:18px 0 45px rgba(16,25,32,.22);padding:88px 20px 24px;align-items:stretch;flex-direction:column;gap:3px;overflow-y:auto;transform:translateX(-110%);visibility:hidden;transition:transform .28s ease,visibility .28s}
  .hc360-navlinks.is-open{transform:translateX(0);visibility:visible}
  .hc360-navlinks>a,.hc360-navlinks .service-trigger{display:flex;width:100%;padding:14px 12px;font-size:16px;text-align:left;border-radius:9px}

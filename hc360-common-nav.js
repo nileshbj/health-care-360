@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded',()=>{
  const nav=document.getElementById('hc360-main-nav'),toggle=document.querySelector('.hc360-menu-toggle');
  const brand=document.querySelector('.hc360-nav .brand');
- if(brand&&toggle&&toggle.parentElement!==brand.parentElement){brand.insertAdjacentElement('afterend',toggle);}
+ if(brand&&toggle&&toggle.parentElement===brand.parentElement){brand.parentElement.insertBefore(toggle,brand);}
  const dropdown=document.querySelector('.hc360-nav .service-dropdown'),trigger=dropdown?.querySelector('.service-trigger');
  let menuHistory=false;
  const backdrop=document.createElement('div');backdrop.className='hc360-menu-backdrop';document.body.appendChild(backdrop);
