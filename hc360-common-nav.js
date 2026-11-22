@@ -46,14 +46,13 @@ function initHC360Header(){
   document.body.appendChild(progressBar);
  }
  const fill=progressBar.querySelector('#hc360-progress-fill')||progressBar.querySelector('span');
+ const siteHeader=document.querySelector('.hc360-quicknav')||document.querySelector('.hc360-site-header');
  let progressFrame=0;
  const updateProgress=()=>{
   if(progressFrame)cancelAnimationFrame(progressFrame);
   progressFrame=requestAnimationFrame(()=>{
-   // Keep the thin reading indicator at the viewport edge. The page can open
-   // directly at #home, where the sticky header may already be above the fold;
-   // offsetting by its height would place the bar over hero content.
-   document.documentElement.style.setProperty('--hc360-progress-top','0px');
+   const headerBottom=siteHeader?Math.max(0,siteHeader.getBoundingClientRect().bottom):0;
+   document.documentElement.style.setProperty('--hc360-progress-top',Math.round(headerBottom)+'px');
    const root=document.scrollingElement||document.documentElement;
    const pageHeight=Math.max(root.scrollHeight,document.body.scrollHeight,document.documentElement.scrollHeight);
    const viewportHeight=window.innerHeight||document.documentElement.clientHeight;
@@ -68,7 +67,7 @@ function initHC360Header(){
  window.addEventListener('resize',updateProgress,{passive:true});
  window.addEventListener('load',updateProgress);
  window.addEventListener('pageshow',updateProgress);
- if('ResizeObserver'in window){const observer=new ResizeObserver(updateProgress);observer.observe(document.body);}
+ if('ResizeObserver'in window){const observer=new ResizeObserver(updateProgress);observer.observe(document.body);if(siteHeader)observer.observe(siteHeader);}
  updateProgress();
  // Two-message hero carousel
  const title=document.getElementById('heroRotatorTitle'),progress=document.getElementById('heroSlideProgress'),dots=[...document.querySelectorAll('.hero-dot')];
