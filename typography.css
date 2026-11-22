@@ -21,3 +21,40 @@ html[lang="mr"] .hero h1, html[lang="hi"] .hero h1 { font-family: var(--font-bra
   .language-card .native { font-size: 24px; }
   .hero h1 { letter-spacing: 0; }
 }
+
+/* Readability pass: Arya for display, Noto Sans for paragraphs and controls */
+:root { --font-reading: "Noto Sans", "Noto Sans Devanagari", "Nirmala UI", Arial, sans-serif; }
+body, p, li, small, label, input, select, textarea, button, .navlinks, .langselect, .pill, .trustitem, .article small, .service p, .path-top p, .step p, .ohc-card p, .ohc-support li, .ohc-note, .wa-option, .wa-panel-foot { font-family: var(--font-reading) !important; }
+h1,h2,h3,h4,.brand,.footerbrand,.language-box h1,.language-native-line { font-family: "Arya", "Nirmala UI", Arial, sans-serif; }
+p, li { font-size: 16px; line-height: 1.75; }
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .wrap { width: min(100% - 28px, 1160px); }
+  .nav { min-height: 68px; height: auto; padding: 9px 0; gap: 8px; }
+  .brand { gap: 8px; font-size: 13px; line-height: 1.2; min-width: 0; flex: 1 1 auto; }
+  .brand small { display: none !important; }
+  .logo { width: 36px; height: 36px; flex: 0 0 36px; font-size: 20px; }
+  .navright { flex: 0 0 auto; gap: 6px; }
+  .sample-variant-link { font-size: 10px; padding: 7px 8px; margin: 0; max-width: 76px; }
+  .langselect { font-size: 13px; padding: 9px 6px; max-width: 88px; }
+  .mobilemenu { font-size: 25px; padding: 4px; }
+  .hero-inner { padding: 38px 0 34px; }
+  .hero h1 { font-size: clamp(34px, 9vw, 41px) !important; line-height: 1.22 !important; }
+  .hero p { font-size: 17px !important; line-height: 1.75 !important; }
+  .eyebrow { font-size: 12px; letter-spacing: 1.2px; line-height: 1.6; }
+  .hero-note { font-size: 14px; line-height: 1.6; }
+  section { padding: 54px 0; }
+  .section-head h2, .knowledge-copy h2 { font-size: 30px; line-height: 1.25; }
+  .section-head p, .knowledge-copy p { font-size: 16px; line-height: 1.75; }
+  .service { padding: 21px; }
+  .service h3 { font-size: 20px; line-height: 1.35; }
+  .service p, .path-top p, .step p { font-size: 16px; line-height: 1.7; }
+  .ohc-heading h2 { font-size: 32px; line-height: 1.22; }
+  .ohc-heading p { font-size: 17px; line-height: 1.75; }
+  .ohc-card h3 { font-size: 22px; line-height: 1.35; }
+  .ohc-card p, .ohc-support li { font-size: 16px; line-height: 1.75; }
+  .ohc-note { font-size: 14px; line-height: 1.7; }
+  .wa-widget .whatsapp { font-size: 14px !important; padding: 13px 16px !important; }
+  .wa-option { font-size: 14px !important; line-height: 1.4; min-height: 58px; }
+  .wa-panel-foot { font-size: 12px; }
+}

@@ -1,27 +1,15 @@
-# Health & Care 360° — motion update
+# Health & Care 360° — website package
 
-Files at repository root: `index.html` (Sample 1), `sample2.html` (Sample 2), `sample1.css`, `sample2.css`, `typography.css`, and `assets/`.
+Static multilingual website (English, Marathi, Hindi).
 
-This update makes the entrance and scroll animations visible after the visitor selects a language. It includes staggered language cards, animated homepage hero content and image, scroll reveals, and restrained hover motion. It respects `prefers-reduced-motion`.
+- `index.html` — Sample 1 landing page
+- `sample2.html` — Sample 2 landing page
+- `ohc.html` — dedicated Nashik OHC & Health Camps page
+- `sample1.css`, `sample2.css` — visual styles for the two landing page directions
+- `typography.css` — shared typography and mobile readability overrides
+- `assets/` — local image assets
 
-To deploy, replace the existing HTML and CSS files in the GitHub repository and keep/merge the existing `assets` folder. Netlify should deploy automatically after the commit.
+## Deploy with Netlify
+Commit the full folder to the connected GitHub repository. Keep the publish directory as `.` and leave build command blank. Netlify will redeploy automatically after each commit.
 
-
-## Mobile layout repair
-This update fixes the small-screen header and hero layout:
-- The brand name stays on one line and the small tagline is hidden on narrow screens.
-- The Sample 2 link, language selector and menu are sized to fit the mobile header.
-- The hero becomes a true single-column layout on phones.
-- The headline and paragraph use the full available width.
-- The hero photograph moves below the text instead of sitting beside/behind it.
-- Floating information cards stay within the photograph.
-
-Replace `index.html`, `sample2.html`, `sample1.css`, and `sample2.css` in the GitHub repository. Keep `typography.css` and the existing `assets` folder.
-
-
-## WhatsApp enquiry menu
-- Both samples use the confirmed WhatsApp contact +91 96659 26095.
-- The floating WhatsApp button opens a small service menu.
-- Service choices generate greeting-first messages in the visitor's selected language (English, Marathi or Hindi).
-- No WhatsApp API, backend or paid chatbot is required. A visitor chooses a service, WhatsApp opens with a pre-filled message, and the visitor presses Send.
-- Replace `index.html`, `sample2.html`, `sample1.css`, and `sample2.css` in GitHub. Keep `typography.css` and the existing `assets` folder.
+Keep `assets/` and all CSS files at the repository root so relative paths work.
