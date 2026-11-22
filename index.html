@@ -14,7 +14,8 @@
 <style>
 .service-dropdown{position:relative}.service-trigger{font-size:13px;font-weight:750;color:#42494e;padding:12px 0;display:inline-flex;gap:6px;align-items:center}.service-dropdown-panel{display:none;position:absolute;top:100%;left:-12px;min-width:210px;background:#fff;border:1px solid #dedfe0;border-radius:10px;padding:8px;box-shadow:0 14px 32px rgba(30,34,38,.14);z-index:50}.service-dropdown:hover .service-dropdown-panel,.service-dropdown:focus-within .service-dropdown-panel{display:grid}.service-dropdown-panel a{padding:10px 12px;border-radius:6px;font-size:13px!important}.service-dropdown-panel a:hover{background:#fff0e9;color:#d94317}.navlinks{gap:22px}
 @media(max-width:600px){.service-dropdown-panel{position:static;box-shadow:none;border:0;padding-left:12px}.service-dropdown:focus-within .service-dropdown-panel{display:grid}}
-</style><link rel="stylesheet" href="hc360-common-nav.css">\n<link rel="stylesheet" href="hc360-experience.css">
+</style><link rel="stylesheet" href="hc360-common-nav.css">
+<link rel="stylesheet" href="hc360-experience.css">
 </head>
 <body>
 
@@ -296,18 +297,5 @@ document.addEventListener("click", function(e){
 
 </script>
 <script src="hc360-common-nav.js" defer></script>
-
-<script>
-(function(){
-  const cta=document.querySelector('.hero-actions a[href="#services"]');
-  const target=document.getElementById('services');
-  if(!cta||!target)return;
-  cta.addEventListener('click',function(event){
-    event.preventDefault();
-    target.scrollIntoView({behavior:'smooth',block:'start'});
-    if(history.replaceState) history.replaceState(null,'','#services');
-  });
-})();
-</script>
 </body>
 </html>

@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  if(lang){try{const saved=localStorage.getItem('hc360-language');if(saved&&['en','mr','hi'].includes(saved)){lang.value=saved;if(typeof setLang==='function')setLang(saved);else if(typeof changeLanguage==='function')changeLanguage(saved);}}catch(e){}}
  // Scroll progress indicator
  const fill=document.getElementById('hc360-progress-fill');
- const updateProgress=()=>{if(!fill)return;const max=document.documentElement.scrollHeight-window.innerHeight;fill.style.width=(max>0?Math.min(100,window.scrollY/max*100):0)+'%';};
- window.addEventListener('scroll',updateProgress,{passive:true});window.addEventListener('resize',updateProgress);updateProgress();
+ const updateProgress=()=>{if(!fill)return;const root=document.documentElement;const max=Math.max(0,root.scrollHeight-window.innerHeight);const y=Math.max(0,window.scrollY||root.scrollTop||0);const pct=max>1?Math.max(0,Math.min(100,(y/max)*100)):0;fill.style.width=pct.toFixed(2)+'%';};
+ window.addEventListener('scroll',updateProgress,{passive:true});window.addEventListener('resize',updateProgress);window.addEventListener('load',updateProgress);if('ResizeObserver'in window){new ResizeObserver(updateProgress).observe(document.body);}updateProgress();
  // Two-message hero carousel
  const title=document.getElementById('heroRotatorTitle'),progress=document.getElementById('heroSlideProgress'),dots=[...document.querySelectorAll('.hero-dot')];
  if(title&&dots.length){
